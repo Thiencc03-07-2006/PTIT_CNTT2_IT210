@@ -1,0 +1,39 @@
+1. Input
+userId: Mã định danh của tài khoản
+itemId: Mã món ăn
+quantity: Số lượng
+
+2. Output
+Trường hợp thành công:
+Thông báo: "Đặt món thành công! Món ăn sẽ được giao đến máy của bạn trong giây lát."
+Trạng thái tài khoản: Số dư đã bị trừ tương ứng với giá tiền.
+Trạng thái kho: Số lượng món ăn trong kho giảm xuống.
+
+Trường hợp thất bại:
+Thông báo lỗi cụ thể: "Sản phẩm đã hết hàng" hoặc "Số dư tài khoản không đủ".
+Hệ thống không thực hiện bất kỳ thay đổi nào (Rollback logic).
+
+3. Kiến trúc (Loose Coupling + DI)
+
+Để đạt được tính Loose Coupling (liên kết lỏng lẻo), chúng ta sẽ không khởi tạo trực tiếp các Repository bên trong Service. Thay vào đó, chúng sẽ được "tiêm" (inject) vào thông qua Constructor hoặc ApplicationContext.
+InventoryRepository (Interface): Chịu trách nhiệm truy xuất thông tin tồn kho.
+UserAccountRepository (Interface): Chịu trách nhiệm kiểm tra và cập nhật số dư.
+OrderFoodService: Chứa logic nghiệp vụ chính, sử dụng hai interface trên.
+
+4. Lưu đồ Xử lý Logic
+- Tiếp nhận yêu cầu: OrderFoodService nhận userId, foodId, và quantity.
+
+- Kiểm tra tồn kho:
+Gọi InventoryRepository để lấy số lượng món ăn hiện có.
+Bẫy dữ liệu 1: Nếu stock < quantity hoặc stock == 0 -> Ném lỗi OutOfStockException.
+
+- Kiểm tra tài chính:
+Tính tổng tiền: total = price * quantity.
+Gọi UserAccountRepository để lấy số dư của userId.
+Bẫy dữ liệu 2: Nếu balance < total -> Ném lỗi InsufficientBalanceException.
+
+- Thực thi giao dịch:
+Trừ tiền tài khoản người dùng thông qua UserAccountRepository.
+Trừ số lượng tồn kho thông qua InventoryRepository.
+
+- Phản hồi: Trả về kết quả thành công cho Client.
