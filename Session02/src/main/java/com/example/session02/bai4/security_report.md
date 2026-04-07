@@ -60,4 +60,4 @@ URL thành: /events/1/book
 
 \<c:url value=\"/events/\${event.id}/book\"/\>
 
-➡ URL thành: /ticketing/events/1/book
+URL thành: /ticketing/events/1/book
