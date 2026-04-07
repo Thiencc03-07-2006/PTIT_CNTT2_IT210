@@ -17,9 +17,9 @@ public class OrderController {
     public String showOrders(HttpSession session, HttpServletRequest request, Model model) {
         ServletContext application = request.getServletContext();
         //Check login
-//        if (session.getAttribute("loggedUser") == null) {
-//            return "redirect:/login";
-//        }
+        if (session.getAttribute("loggedUser") == null) {
+            return "redirect:/login";
+        }
 
         //Fake data
         List<Order> orders = new ArrayList<>();

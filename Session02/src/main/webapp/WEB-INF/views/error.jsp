@@ -2,18 +2,18 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <html>
-<head>
-    <title>Lỗi hệ thống</title>
-</head>
-<body>
+    <head>
+        <title>Lỗi hệ thống</title>
+    </head>
+    <body>
 
-<h2 style="color:red;">Đã xảy ra lỗi</h2>
+        <h2 style="color:red;">Đã xảy ra lỗi</h2>
 
-<p>${errorMessage}</p>
+        <p>${errorMessage}</p>
 
-<br/>
+        <br/>
 
-<a href="<c:url value='/employees'/>">Quay lại danh sách</a>
+        <a href="<c:url value='/employees'/>">Quay lại danh sách</a>
 
-</body>
+    </body>
 </html>

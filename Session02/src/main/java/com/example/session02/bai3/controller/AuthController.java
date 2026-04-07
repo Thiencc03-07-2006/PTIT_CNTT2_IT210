@@ -14,7 +14,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String handleLogin(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
+    public String handleLogin(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session, Model model) {
 
         if ("admin".equals(username) && "admin123".equals(password)) {
             session.setAttribute("loggedUser", username);

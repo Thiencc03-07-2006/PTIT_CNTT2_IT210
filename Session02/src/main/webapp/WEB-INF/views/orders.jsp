@@ -4,50 +4,50 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
-<head>
-    <title>Danh sách đơn hàng</title>
-</head>
-<body>
+    <head>
+        <title>Danh sách đơn hàng</title>
+    </head>
+    <body>
 
-<h2>
-    Xin chào, ${sessionScope.loggedUser}!
-    Vai trò: ${sessionScope.role}
-</h2>
+        <h2>
+            Xin chào, ${sessionScope.loggedUser}!
+            Vai trò: ${sessionScope.role}
+        </h2>
 
-<a href="${pageContext.request.contextPath}/logout">Đăng xuất</a>
+        <a href="${pageContext.request.contextPath}/logout">Đăng xuất</a>
 
-<table border="1">
-    <tr>
-        <th>Mã đơn</th>
-        <th>Sản phẩm</th>
-        <th>Tổng tiền</th>
-        <th>Ngày đặt</th>
-    </tr>
+        <table border="1">
+            <tr>
+                <th>Mã đơn</th>
+                <th>Sản phẩm</th>
+                <th>Tổng tiền</th>
+                <th>Ngày đặt</th>
+            </tr>
 
-    <c:forEach var="o" items="${orderList}">
-        <tr>
-            <td>${o.orderId}</td>
-            <td>${o.name}</td>
+            <c:forEach var="o" items="${orderList}">
+                <tr>
+                    <td>${o.orderId}</td>
+                    <td>${o.name}</td>
 
-            <!-- Format tiền -->
-            <td>
-                <fmt:formatNumber value="${o.price}" type="currency" currencySymbol="₫"/>
-            </td>
+                    <!-- Format tiền -->
+                    <td>
+                        <fmt:formatNumber value="${o.price}" type="currency" currencySymbol="₫"/>
+                    </td>
 
-            <!-- Format ngày -->
-            <td>
-                <fmt:formatDate value="${o.date}" pattern="dd/MM/yyyy"/>
-            </td>
-        </tr>
-    </c:forEach>
-</table>
+                    <!-- Format ngày -->
+                    <td>
+                        <fmt:formatDate value="${o.date}" pattern="dd/MM/yyyy"/>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
 
-<br/>
+        <br/>
 
-<p>
-    Tổng lượt xem đơn hàng toàn hệ thống:
-    ${applicationScope.totalViewCount}
-</p>
+        <p>
+            Tổng lượt xem đơn hàng toàn hệ thống:
+            ${applicationScope.totalViewCount}
+        </p>
 
-</body>
+    </body>
 </html>

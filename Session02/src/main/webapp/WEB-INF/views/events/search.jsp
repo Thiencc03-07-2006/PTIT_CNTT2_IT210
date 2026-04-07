@@ -5,110 +5,110 @@
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 
 <html>
-<head>
-    <title>Tìm kiếm sự kiện</title>
-</head>
-<body>
+    <head>
+        <title>Tìm kiếm sự kiện</title>
+    </head>
+    <body>
 
-<!-- A. HEADER -->
+        <!-- A. HEADER -->
 
-<h2>
-    Kết quả tìm kiếm cho:
-    <c:out value="${keyword}" escapeXml="true"/>
-</h2>
+        <h2>
+            Kết quả tìm kiếm cho:
+            <c:out value="${keyword}" escapeXml="true"/>
+        </h2>
 
-<p>Tìm thấy ${totalFound} sự kiện</p>
+        <p>Tìm thấy <c:out value="${totalFound}"/> sự kiện</p>
 
-<c:if test="${empty events}">
-    <p>Không tìm thấy sự kiện nào phù hợp.</p>
-</c:if>
+        <c:if test="${empty events}">
+            <p>Không tìm thấy sự kiện nào phù hợp.</p>
+        </c:if>
 
-<!-- B. TABLE -->
-<c:if test="${not empty events}">
-    <table border="1">
-        <tr>
-            <th>STT</th>
-            <th>Tên sự kiện</th>
-            <th>Ngày tổ chức</th>
-            <th>Giá vé</th>
-            <th>Vé còn lại</th>
-            <th>Thao tác</th>
-        </tr>
+        <!-- B. TABLE -->
+        <c:if test="${not empty events}">
+            <table border="1">
+                <tr>
+                    <th>STT</th>
+                    <th>Tên sự kiện</th>
+                    <th>Ngày tổ chức</th>
+                    <th>Giá vé</th>
+                    <th>Vé còn lại</th>
+                    <th>Thao tác</th>
+                </tr>
 
-        <c:forEach var="event" items="${events}" varStatus="loop">
-            <tr>
-                <!-- STT -->
-                <td>${loop.count}</td>
+                <c:forEach var="event" items="${events}" varStatus="loop">
+                    <tr>
+                        <!-- STT -->
+                        <td><c:out value="${loop.count}"/></td>
 
-                <!-- Tên (CHỐNG XSS) -->
-                <td>
-                    <c:out value="${event.name}" escapeXml="true"/>
-                </td>
+                        <!-- Tên (CHỐNG XSS) -->
+                        <td>
+                            <c:out value="${event.name}" escapeXml="true"/>
+                        </td>
 
-                <!-- Ngày -->
-                <td>${event.eventDate}</td>
+                        <!-- Ngày -->
+                        <td><c:out value="${event.eventDate}"/></td>
 
-                <!-- Giá vé -->
-                <td>
-                    <c:choose>
-                        <c:when test="${event.price == 0}">
-                            <span style="color: green;">MIỄN PHÍ</span>
-                        </c:when>
-                        <c:otherwise>
-                            <fmt:formatNumber value="${event.price}" type="number" groupingUsed="true"/> ₫
-                        </c:otherwise>
-                    </c:choose>
-                </td>
+                        <!-- Giá vé -->
+                        <td>
+                            <c:choose>
+                                <c:when test="${event.price == 0}">
+                                    <span style="color: green;">MIỄN PHÍ</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <fmt:formatNumber value="${event.price}" type="number" groupingUsed="true"/> ₫
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
 
-                <!-- Vé còn lại -->
-                <td>
-                    <c:choose>
-                        <c:when test="${event.remainingTickets == 0}">
-                            <span style="color: red;">HẾT VÉ</span>
-                        </c:when>
-                        <c:when test="${event.remainingTickets < 10}">
+                        <!-- Vé còn lại -->
+                        <td>
+                            <c:choose>
+                                <c:when test="${event.remainingTickets == 0}">
+                                    <span style="color: red;">HẾT VÉ</span>
+                                </c:when>
+                                <c:when test="${event.remainingTickets < 10}">
                             <span style="color: orange;">
-                                Sắp hết (còn ${event.remainingTickets} vé)
+                                Sắp hết (còn <c:out value="${event.remainingTickets}"/> vé)
                             </span>
-                        </c:when>
-                        <c:otherwise>
+                                </c:when>
+                                <c:otherwise>
                             <span style="color: green;">
-                                    ${event.remainingTickets}
+                                    <c:out value="${event.eventDate}"/>
                             </span>
-                        </c:otherwise>
-                    </c:choose>
-                </td>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
 
-                <!-- Thao tác -->
-                <td>
-                    <c:choose>
-                        <c:when test="${event.remainingTickets == 0}">
-                            <span style="color: gray;">Không khả dụng</span>
-                        </c:when>
-                        <c:otherwise>
-                            <c:url var="bookUrl" value="/events/${event.id}/book"/>
-                            <a href="${bookUrl}">Đặt vé</a>
-                        </c:otherwise>
-                    </c:choose>
-                </td>
+                        <!-- Thao tác -->
+                        <td>
+                            <c:choose>
+                                <c:when test="${event.remainingTickets == 0}">
+                                    <span style="color: gray;">Không khả dụng</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:url var="bookUrl" value="/events/${event.id}/book"/>
+                                    <a href="${bookUrl}">Đặt vé</a>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
 
-            </tr>
-        </c:forEach>
-    </table>
-</c:if>
+                    </tr>
+                </c:forEach>
+            </table>
+        </c:if>
 
-<!-- C. FOOTER -->
+        <!-- C. FOOTER -->
 
-<c:if test="${not empty events}">
-    <p>
-        Sự kiện đầu tiên:
-        <c:out value="${fn:toUpperCase(events[0].name)}"/>
-    </p>
-</c:if>
+        <c:if test="${not empty events}">
+            <p>
+                Sự kiện đầu tiên:
+                <c:if test="${not empty events and not empty events[0].name}"/>
+            </p>
+        </c:if>
 
-<p>
-    Độ dài từ khóa: ${fn:length(keyword)} ký tự
-</p>
+        <p>
+            Độ dài từ khóa: <c:out value="${fn:length(keyword)}"/> ký tự
+        </p>
 
-</body>
+    </body>
 </html>
