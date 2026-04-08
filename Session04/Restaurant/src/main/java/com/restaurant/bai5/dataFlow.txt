@@ -1,0 +1,9 @@
+Client (Browser/Postman)
+        ↓
+Controller (@Controller)
+        ↓
+Service (@Service)
+        ↓
+Repository (@Repository)
+        ↓
+Data (giả lập trong code)

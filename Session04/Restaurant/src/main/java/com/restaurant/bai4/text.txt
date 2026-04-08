@@ -1,0 +1,17 @@
+URL:
+    /bai4/products?category=chay&limit=10
+
+Controller:
+    @RequestParam("category") → biến category
+    @RequestParam("limit") → biến limit
+
+ModelMap:
+    addAttribute("category", category)
+    addAttribute("limit", limit)
+    addAttribute("message", "Tim kiem thanh cong")
+
+View:
+    /WEB-INF/views/productList.jsp
+
+JSP hiển thị:
+    ${category}, ${limit}, ${message}

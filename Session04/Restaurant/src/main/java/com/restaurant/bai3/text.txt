@@ -1,0 +1,4 @@
+Trong Cách A (/bai3/orders/5), số 5 nằm trong URI Path (đường dẫn tài nguyên).
+Trong Cách B (/bai3/orders?id=5), số 5 nằm trong Query String (tham số truy vấn).
+Theo nguyên tắc REST, khi truy cập một tài nguyên cụ thể, ID nên nằm trong Path.
+Vì vậy, để lấy chi tiết một đơn hàng, Cách A là phù hợp hơn.

@@ -1,0 +1,5 @@
+GET http://localhost:9999/orders/1
+###
+POST http://localhost:9999/orders
+###
+DELETE http://localhost:9999/orders/1
