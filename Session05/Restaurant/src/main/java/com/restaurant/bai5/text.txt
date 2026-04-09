@@ -1,0 +1,18 @@
+Client (Browser)
+    ↓ GET /bai5/order
+OrderController
+    ↓
+OrderService
+    ↓
+OrderRepository (in-memory)
+    ↓
+List<Dish> + OrderSummary (total, tax...)
+    ↓
+model.addAttribute(...)
+    ↓
+Thymeleaf (order.html)
+    ↓ render
+Client
+
+Tạo ra controller DishDetailController (hoặc tuỳ sinh viên đặt tên, nhưng phải khác tên các bài trên) hoàn chỉnh, có xử lý ngoại lệ.
+Đã làm ở bài 4

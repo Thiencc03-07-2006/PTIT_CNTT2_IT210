@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main-layout}">
+    <head>
+        <meta charset="UTF-8">
+        <title>Danh sách món ăn</title>
+        <meta charset="UTF-8">
+        <style>
+            .out-of-stock {
+                color: red;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <section layout:fragment="content">
+            <div th:if="${error}" style="color:red; font-weight:bold;">
+                <p th:text="${error}"></p>
+            </div>
+            <h2>Danh sách món ăn</h2>
+
+            <!-- Trường hợp list rỗng -->
+            <div th:if="${dishes == null or #lists.isEmpty(dishes)}">
+                <p>Hiện tại nhà hàng đang cập nhật thực đơn, vui lòng quay lại sau</p>
+            </div>
+
+            <!-- Có dữ liệu -->
+            <table border="1" th:unless="${dishes == null or #lists.isEmpty(dishes)}">
+                <tr>
+                    <th>ID</th>
+                    <th>Tên món</th>
+                    <th>Giá</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                </tr>
+
+                <tr th:each="dish : ${dishes}">
+                    <td th:text="${dish.id}"></td>
+                    <td th:text="${dish.name}"></td>
+                    <td th:text="${dish.price} + ' VND'"></td>
+
+                    <td>
+                        <span th:if="${dish.available}">Còn hàng</span>
+                        <span th:unless="${dish.available}" class="out-of-stock">Hết hàng</span>
+                    </td>
+                    <td>
+
+                        <a th:href="@{/bai3/edit/{id}(id=${dish.id})}">
+                            Chỉnh sửa
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </section>
+    </body>
+</html>

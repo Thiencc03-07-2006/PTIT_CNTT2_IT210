@@ -1,0 +1,17 @@
+[View A - dish-list.html]
+    ↓ click "Chỉnh sửa"
+GET /bai3/edit/{id}
+    ↓
+AdminDishController
+    ↓ nhận @PathVariable id
+    ↓ gọi
+AdminDishService.findById(id)
+    ↓
+IF tồn tại:
+    model.addAttribute("dish", dish)
+    → return "edit-dish"
+ELSE:
+    redirect:/bai2/dishes + error message
+    ↓
+[View B - edit-dish.html]
+    ↓ form bind dữ liệu bằng th:object + th:field

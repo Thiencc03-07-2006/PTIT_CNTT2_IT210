@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Chỉnh sửa món ăn</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+
+        <h2>Chỉnh sửa món ăn</h2>
+
+        <form th:action="@{/bai3/update}" th:object="${dish}" method="post">
+
+            <input type="hidden" th:field="*{id}" />
+
+            <div>
+                Tên món:
+                <input type="text" th:field="*{name}" />
+            </div>
+
+            <div>
+                Giá:
+                <input type="number" th:field="*{price}" />
+            </div>
+
+            <div>
+                Trạng thái:
+                <select th:field="*{available}">
+                    <option th:value="true">Còn hàng</option>
+                    <option th:value="false">Hết hàng</option>
+                </select>
+            </div>
+
+            <button type="submit">Cập nhật</button>
+
+        </form>
+
+    </body>
+</html>

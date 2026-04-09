@@ -1,0 +1,15 @@
+Client (Browser)
+    ↓ request
+GET /bai2/dishes
+    ↓
+DishController
+    ↓ gọi
+DishService
+    ↓ trả về
+List<Dish>
+    ↓ add vào Model
+model.addAttribute("dishes", list)
+    ↓
+Thymeleaf View (dish-list.html)
+    ↓ render HTML
+Client nhận giao diện

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <h2>Test html file</h2>
+        <p th:each="d, stat : ${ {#temporals.createNow(), #temporals.createNow().plusDays(1)} }"
+           th:text="${(stat.index == 0 ? 'Hôm nay: ' : 'Ngày mai: ')
+                  + #temporals.format(d, 'dd/MM/yyyy')}">
+        </p>
+    </body>
+</html>

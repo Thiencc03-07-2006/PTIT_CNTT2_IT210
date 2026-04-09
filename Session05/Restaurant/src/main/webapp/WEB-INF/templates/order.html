@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main-layout}">
+
+    <head>
+        <title>Smart Order</title>
+    </head>
+
+    <body>
+
+        <section layout:fragment="content">
+
+            <h2>Đặt món nhanh</h2>
+
+            <table border="1">
+                <tr>
+                    <th>Tên món</th>
+                    <th>Giá</th>
+                </tr>
+
+                <!-- MOCK DATA (Designer thấy được) -->
+                <tr th:remove="all">
+                    <td>Phở bò</td>
+                    <td>50000</td>
+                </tr>
+
+                <!-- REAL DATA (Server render) -->
+                <tr th:each="item : ${order.items}">
+                    <td th:text="${item.name}">Tên món</td>
+                    <td th:text="${item.price}">0</td>
+                </tr>
+
+            </table>
+
+            <p>Tổng: <span th:text="${order.total}">150000</span></p>
+            <p>Thuế: <span th:text="${order.tax}">15000</span></p>
+            <p>Thanh toán: <span th:text="${order.finalAmount}">165000</span></p>
+
+        </section>
+
+    </body>
+</html>
