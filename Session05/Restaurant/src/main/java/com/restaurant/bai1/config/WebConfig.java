@@ -42,6 +42,9 @@ public class WebConfig {
         return viewResolver;
     }
 
+    /*
+    Thymeleaf chỉ hiểu các thuộc tính trong Standard Dialect. Các thuộc tính như layout:decorate thuộc về Layout Dialect – một extension bên ngoài. Vì vậy, nếu không đăng ký LayoutDialect vào SpringTemplateEngine, engine sẽ không nhận diện và bỏ qua các thuộc tính layout, dẫn đến giao diện không được ghép layout đúng.
+     */
     @Bean
     public LayoutDialect layoutDialect() {
         return new LayoutDialect();
