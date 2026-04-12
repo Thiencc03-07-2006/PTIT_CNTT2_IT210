@@ -1,4 +1,4 @@
-package com.restaurant.bai1.config;
+package com.edupath.config;
 
 import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 import org.springframework.context.annotation.Bean;
@@ -8,40 +8,33 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring6.view.ThymeleafViewResolver;
-import org.thymeleaf.templatemode.TemplateMode;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.restaurant")
+@ComponentScan(basePackages = "com.edupath")
 public class WebConfig {
     @Bean
-    public SpringResourceTemplateResolver springResourceTemplateResolver() {
+    public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
-        resolver.setTemplateMode(TemplateMode.HTML);
-        resolver.setPrefix("/WEB-INF/templates/");
+        resolver.setPrefix("/WEB-INF/views/");
         resolver.setSuffix(".html");
         resolver.setCharacterEncoding("UTF-8");
         return resolver;
     }
 
     @Bean
-    public SpringTemplateEngine springTemplateEngine() {
+    public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine engine = new SpringTemplateEngine();
-        engine.setTemplateResolver(springResourceTemplateResolver());
-        engine.addDialect(layoutDialect());
+        engine.setTemplateResolver(templateResolver());
+        engine.addDialect(new LayoutDialect());
         return engine;
     }
 
     @Bean
-    public ThymeleafViewResolver thymeleafViewResolver() {
-        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-        viewResolver.setTemplateEngine(springTemplateEngine());
-        viewResolver.setCharacterEncoding("UTF-8");
-        return viewResolver;
-    }
-
-    @Bean
-    public LayoutDialect layoutDialect() {
-        return new LayoutDialect();
+    public ThymeleafViewResolver viewResolver() {
+        ThymeleafViewResolver resolver = new ThymeleafViewResolver();
+        resolver.setTemplateEngine(templateEngine());
+        resolver.setCharacterEncoding("UTF-8");
+        return resolver;
     }
 }
