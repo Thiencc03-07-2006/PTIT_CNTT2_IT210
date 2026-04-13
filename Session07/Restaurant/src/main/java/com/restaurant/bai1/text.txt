@@ -1,0 +1,30 @@
+file html ..\..\..\webapp\WEB-INF\views\update-profile.html
+Vì sao name bị null?
+Cơ chế Data Binding của Spring hoạt động theo nguyên tắc:
+Tên name trong input HTML phải trùng với tên field trong POJO
+Trong model:
+private String name;
+Nhưng trong HTML:
+<input type="text" name="restaurantName" />
+→ Spring sẽ cố map:
+restaurantName → ??? (không tồn tại trong RestaurantProfile)
+→ Không tìm thấy field tương ứng → bỏ qua
+→ profile.getName() → null
+
+Vì sao checkbox active bị lỗi logic?
+Kiểu dữ liệu không phù hợp
+private boolean active;
+Nhưng HTML gửi:
+active = "MỞ_CỬA"
+→ Spring phải convert "MỞ_CỬA" → boolean
+→ Không phải "true" / "false" → convert fail hoặc sai
+Checkbox không gửi dữ liệu khi không tick
+Nếu tick → gửi:
+active=MỞ_CỬA
+Nếu không tick → KHÔNG gửi gì cả
+→ Spring sẽ:
+Không nhận được param active
+Với boolean primitive → mặc định false
+→ Dẫn tới:
+Không phân biệt rõ trạng thái user
+Dễ sai logic

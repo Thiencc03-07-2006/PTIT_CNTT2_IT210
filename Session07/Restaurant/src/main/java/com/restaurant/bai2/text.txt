@@ -1,0 +1,20 @@
+model.addAttribute("categories", categories);
+bị lặp lại ở cả 3 method → vi phạm trực tiếp:
+→ DRY (Don't Repeat Yourself)
+Một logic chỉ nên tồn tại duy nhất một nơi
+
+Nếu sau này có 20 trang đều cần categories, bạn sẽ gặp:
+1. Maintenance Hell
+Thay đổi dữ liệu (ví dụ thêm "Combo") → phải sửa 20 chỗ
+Rất dễ sót → bug không đồng nhất UI
+2. Tight Coupling
+Controller bị gắn chặt vào dữ liệu tĩnh
+Không tái sử dụng được
+3. Code Smell — Fat Controller
+Controller phình to, chứa logic không cần thiết
+Vi phạm Single Responsibility Principle (SRP)
+4. Dễ gây inconsistency
+Ví dụ:
+Trang A: có "Topping"
+Trang B: quên update → thiếu
+→ UX lỗi nhưng khó phát hiện

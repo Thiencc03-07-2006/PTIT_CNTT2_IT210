@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <p th:text="${error}"></p>
+        <form action="/merchant/food/add" method="post" enctype="multipart/form-data">
+            <input type="text" name="name" placeholder="Tên món"/>
+            <select name="category">
+                <option value="Khai vị">Khai vị</option>
+                <option value="Món chính">Món chính</option>
+                <option value="Đồ uống">Đồ uống</option>
+            </select>
+            <input type="number" name="price"/>
+            <input type="file" name="image"/>
+            <button type="submit">Thêm món</button>
+        </form>
+    </body>
+</html>

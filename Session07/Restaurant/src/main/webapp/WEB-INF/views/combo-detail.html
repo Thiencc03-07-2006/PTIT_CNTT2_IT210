@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <h2>Chi tiết Combo</h2>
+        <p style="color: green" th:if="${message}" th:text="${message}"></p>
+        <p>ID: <span th:text="${combo.id}"></span></p>
+        <p>Tên combo: <span th:text="${combo.name}"></span></p>
+        <p>Danh sách món:</p>
+        <ul>
+            <li th:each="item : ${combo.itemList}" th:text="${item}"></li>
+        </ul>
+        <p>Đường dẫn banner:</p>
+        <p th:text="${combo.bannerPath}"></p>
+        <br>
+        <a href="/merchant/combo/add">Tạo combo mới</a>
+    </body>
+</html>
