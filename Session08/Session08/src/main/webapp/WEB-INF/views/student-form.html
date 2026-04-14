@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            .error {
+                color: red;
+            }
+
+            .input-error {
+                border: 1px solid red;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Tạo Student</h2>
+
+        <form th:action="@{/students/save}" th:object="${student}" method="post">
+
+            <!-- NAME -->
+            <div>
+                <label>Tên:</label>
+                <input type="text" th:field="*{name}"
+                       th:classappend="${#fields.hasErrors('name')} ? 'input-error'">
+                <div class="error" th:errors="*{name}"></div>
+            </div>
+
+            <!-- AGE -->
+            <div>
+                <label>Tuổi:</label>
+                <input type="number" th:field="*{age}"
+                       th:classappend="${#fields.hasErrors('age')} ? 'input-error'">
+                <div class="error" th:errors="*{age}"></div>
+            </div>
+
+            <!-- EMAIL -->
+            <div>
+                <label>Email:</label>
+                <input type="text" th:field="*{email}"
+                       th:classappend="${#fields.hasErrors('email')} ? 'input-error'">
+                <div class="error" th:errors="*{email}"></div>
+            </div>
+
+            <div>
+                <label>Giới tính:</label>
+                <select th:field="*{gender}"
+                        th:classappend="${#fields.hasErrors('gender')} ? 'input-error'">
+                    <option value="">--Chọn--</option>
+                    <option value="Nam">Nam</option>
+                    <option value="Nữ">Nữ</option>
+                </select>
+                <div class="error" th:errors="*{gender}"></div>
+            </div>
+
+            <!-- GLOBAL ERROR -->
+            <div th:if="${#fields.hasAnyErrors()}">
+                <p class="error">Form có lỗi, vui lòng kiểm tra lại!</p>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

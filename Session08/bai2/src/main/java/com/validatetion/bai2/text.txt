@@ -1,0 +1,17 @@
+Hiện tượng: submit sai (ví dụ age = 16) → không quay lại form mà bị 400 Bad Request – MethodArgumentNotValidException
+Nguyên nhân cốt lõi
+Trong Spring MVC, thứ tự tham số trong method là ràng buộc nghiêm ngặt:
+@Valid @ModelAttribute("employee") EmployeeDto employee,
+Model model,
+BindingResult bindingResult
+Đây là sai.
+Quy tắc của Spring
+BindingResult phải đứng NGAY SAU object được validate (@Valid)
+Nếu không:
+Spring không bind lỗi vào BindingResult
+Thay vào đó, nó ném exception MethodArgumentNotValidException
+→ trả về HTTP 400 (trang trắng)
+Vì sao HR bị mất dữ liệu?
+Exception xảy ra trước khi vào if (bindingResult.hasErrors())
+Controller không bao giờ chạy tới đoạn đó
+Không return lại form ⇒ mất state

@@ -1,0 +1,16 @@
+(1)Lọt khoảng trắng vào Database
+Đang dùng:
+@NotNull
+Vấn đề cốt lõi:
+@NotNull chỉ kiểm tra giá trị khác null
+Nó KHÔNG kiểm tra chuỗi rỗng hoặc chỉ chứa khoảng trắng
+(2) Không chặn request Postman → lỗi 500
+Nguyên nhân:
+Thiếu @Valid ở Controller
+public ResponseEntity<String> updateAddress(@RequestBody AddressDto addressDto)
+→ Spring KHÔNG kích hoạt Bean Validation
+Khi request thiếu field hoặc sai format:
+Jackson deserialize lỗi
+Hoặc logic xử lý DB nhận dữ liệu null/invalid
+→ Không có validation ⇒ đi thẳng vào service ⇒ phát sinh exception
+→ Không handle ⇒ trả về 500 Internal Server Error

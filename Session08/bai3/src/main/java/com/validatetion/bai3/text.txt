@@ -1,0 +1,37 @@
+Input / Output
+Input (API request):
+{
+  "withdrawAmount": ?
+}
+Các trường hợp input cần xử lý:
+null
+< 50.000
+không chia hết cho 10.000
+số âm
+hợp lệ (≥ 50k và %10000 == 0) ✅
+Output (Validation result):
+Hợp lệ → đi tiếp service
+Không hợp lệ → trả về 400 + message rõ ràng
+Thiết kế giải pháp
+Không dùng if-else trong Controller
+→ Vi phạm Separation of Concerns + Clean Code
+Giải pháp chuẩn: Custom Annotation
+Tạo annotation:
+@MultipleOfTenThousand
+Kết hợp với:
+@NotNull → chặn null
+@Min(50000) → chặn < 50k
+Luồng validate (Pseudo code)
+function isValid(value):
+    IF value == null:
+        RETURN true   // để @NotNull xử lý
+    IF value < 0:
+        RETURN false
+    IF value < 50000:
+        RETURN false
+    IF value % 10000 != 0:
+        RETURN false
+    RETURN true
+Best Practice quan trọng:
+Validator KHÔNG xử lý null
+Null để annotation khác (@NotNull) xử lý
