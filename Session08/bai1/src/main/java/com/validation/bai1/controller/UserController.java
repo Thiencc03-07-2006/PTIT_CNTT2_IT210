@@ -1,6 +1,6 @@
-package com.validatetion.bai1.controller;
+package com.validation.bai1.controller;
 
-import com.validatetion.bai1.modal.dto.AddressDto;
+import com.validation.bai1.modal.dto.AddressDto;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

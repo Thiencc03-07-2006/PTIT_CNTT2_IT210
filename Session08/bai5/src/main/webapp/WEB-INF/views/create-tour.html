@@ -1,41 +1,35 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>Title</title>
     </head>
     <body>
         <form th:action="@{/tour/create}" th:object="${tour}" method="post">
-
-            <!-- Tour Code -->
-            <label>Mã Tour:</label>
-            <input type="text" th:field="*{tourCode}"/>
-            <div style="color:red"
-                 th:if="${#fields.hasErrors('tourCode')}"
-                 th:errors="*{tourCode}"></div>
-
-            <!-- Price -->
-            <label>Giá người lớn:</label>
-            <input type="number" th:field="*{adultPrice}"/>
-            <div style="color:red"
-                 th:errors="*{adultPrice}"></div>
-
-            <label>Giá trẻ em:</label>
-            <input type="number" th:field="*{childPrice}"/>
-            <div style="color:red"
-                 th:errors="*{childPrice}"></div>
-
-            <!-- Date -->
-            <label>Ngày khởi hành:</label>
-            <input type="date" th:field="*{startDate}"/>
-            <div style="color:red"
-                 th:errors="*{startDate}"></div>
-
-            <label>Ngày kết thúc:</label>
-            <input type="date" th:field="*{endDate}"/>
-            <div style="color:red"
-                 th:errors="*{endDate}"></div>
-
+            <div><label>Mã Tour:</label>
+                <input type="text" th:field="*{tourCode}"/>
+                <div style="color:red" th:if="${#fields.hasErrors('tourCode')}" th:errors="*{tourCode}"></div>
+            </div>
+            <div>
+                <label>Giá người lớn:</label>
+                <input type="number" th:field="*{adultPrice}"/>
+                <div style="color:red" th:if="${#fields.hasErrors('adultPrice')}" th:errors="*{adultPrice}"></div>
+            </div>
+            <div>
+                <label>Giá trẻ em:</label>
+                <input type="number" th:field="*{childPrice}"/>
+                <div style="color:red" th:if="${#fields.hasErrors('childPrice')}" th:errors="*{childPrice}"></div>
+            </div>
+            <div>
+                <label>Ngày khởi hành:</label>
+                <input type="date" th:field="*{startDate}"/>
+                <div style="color:red" th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></div>
+            </div>
+            <div>
+                <label>Ngày kết thúc:</label>
+                <input type="date" th:field="*{endDate}"/>
+                <div style="color:red" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></div>
+            </div>
             <button type="submit">Tạo Tour</button>
         </form>
     </body>

@@ -13,7 +13,7 @@ public class DateRangeValidator implements ConstraintValidator<ValidDateRange, T
         boolean valid = dto.getEndDate().isAfter(dto.getStartDate());
         if (!valid) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate("Ngày kết thúc phải sau ngày khởi hành")
+            context.buildConstraintViolationWithTemplate(context.getDefaultConstraintMessageTemplate())
                     .addPropertyNode("endDate")
                     .addConstraintViolation();
         }

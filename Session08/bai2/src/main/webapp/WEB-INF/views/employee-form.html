@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <form th:action="@{/hr/add-employee}" th:object="${employee}" method="post">
+            <div>
+                <label>Tuổi:</label>
+                <input type="number" th:field="*{age}"/>
+                <div style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
+            </div>
+            <button type="submit">Thêm</button>
+        </form>
+    </body>
+</html>

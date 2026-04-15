@@ -3,6 +3,7 @@ package com.validation.bai5.model.dto;
 import com.validation.bai5.validation.ValidDateRange;
 import com.validation.bai5.validation.ValidPrice;
 import jakarta.validation.constraints.*;
+
 import java.time.LocalDate;
 
 @ValidPrice
@@ -10,8 +11,7 @@ import java.time.LocalDate;
 public class TourDto {
 
     @NotBlank
-    @Pattern(regexp = "^(VN|INT)_\\d{5}$",
-            message = "Mã tour phải VN_ hoặc INT_ + 5 số")
+    @Pattern(regexp = "^(VN|INT)_\\d{5}$", message = "Mã tour phải VN_ hoặc INT_ + 5 số")
     private String tourCode;
 
     @NotNull

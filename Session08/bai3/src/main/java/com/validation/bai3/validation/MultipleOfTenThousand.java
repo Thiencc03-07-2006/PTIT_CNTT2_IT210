@@ -1,4 +1,4 @@
-package com.validatetion.bai3.validation;
+package com.validation.bai3.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

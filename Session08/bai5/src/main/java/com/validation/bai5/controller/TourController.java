@@ -18,14 +18,10 @@ public class TourController {
     }
 
     @PostMapping("/create")
-    public String createTour(
-            @Valid @ModelAttribute("tour") TourDto tour,
-            BindingResult result) {
-
+    public String createTour(@Valid @ModelAttribute("tour") TourDto tour, BindingResult result) {
         if (result.hasErrors()) {
             return "create-tour";
         }
-
         return "redirect:/tour/success";
     }
 }

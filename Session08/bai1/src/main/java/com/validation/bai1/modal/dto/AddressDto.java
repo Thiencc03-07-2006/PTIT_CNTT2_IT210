@@ -1,4 +1,4 @@
-package com.validatetion.bai1.modal.dto;
+package com.validation.bai1.modal.dto;
 
 import jakarta.validation.constraints.NotBlank;
 

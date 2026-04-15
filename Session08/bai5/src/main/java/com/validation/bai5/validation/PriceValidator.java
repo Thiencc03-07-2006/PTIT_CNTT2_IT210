@@ -14,7 +14,7 @@ public class PriceValidator implements ConstraintValidator<ValidPrice, TourDto> 
         boolean valid = dto.getChildPrice() <= dto.getAdultPrice();
         if (!valid) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate("Giá trẻ em phải nhỏ hơn hoặc bằng giá người lớn")
+            context.buildConstraintViolationWithTemplate(context.getDefaultConstraintMessageTemplate())
                     .addPropertyNode("childPrice")
                     .addConstraintViolation();
         }

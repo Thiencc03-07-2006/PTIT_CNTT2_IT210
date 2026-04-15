@@ -16,7 +16,7 @@ public class PasswordMatchesValidator implements ConstraintValidator<PasswordMat
         boolean matches = Objects.equals(password, confirm);
         if (!matches) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate("Mật khẩu xác nhận không khớp").addPropertyNode("confirmPassword").addConstraintViolation();
+            context.buildConstraintViolationWithTemplate(context.getDefaultConstraintMessageTemplate()).addPropertyNode("confirmPassword").addConstraintViolation();
         }
         return matches;
     }

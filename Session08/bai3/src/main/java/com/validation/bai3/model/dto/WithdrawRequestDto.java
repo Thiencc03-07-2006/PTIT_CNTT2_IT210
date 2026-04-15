@@ -1,6 +1,6 @@
-package com.validatetion.bai3.model.dto;
+package com.validation.bai3.model.dto;
 
-import com.validatetion.bai3.validation.MultipleOfTenThousand;
+import com.validation.bai3.validation.MultipleOfTenThousand;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
